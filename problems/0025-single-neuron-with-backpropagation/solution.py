@@ -5,14 +5,10 @@ def dsigma_z(sigma_z):
 
 def train_neuron(features: np.ndarray, labels: np.ndarray, initial_weights: np.ndarray, initial_bias: float, learning_rate: float, epochs: int) -> (np.ndarray, float, list[float]):
     
-    n = len(initial_weights)
     N = len(features)
-    updated_weights = np.zeros(n)
-    updated_bias = 0
     mse_values = np.zeros(epochs)
-
     for _ in range(epochs):
-        sigma_z = 1 / (1 + np.exp(- (features @ initial_weights + initial_bias)))
+        sigma_z = 1 / (1 + np.exp(-(features @ initial_weights + initial_bias)))
 
         mse_values[_] = np.mean((sigma_z - labels) ** 2)
 
